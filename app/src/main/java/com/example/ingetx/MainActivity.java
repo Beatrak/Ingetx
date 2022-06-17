@@ -2,13 +2,9 @@ package com.example.ingetx;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,14 +16,12 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
-                readWs();
+                connectWS();
 
             }
         });
@@ -86,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void readWs(){
+    private void connectWS(){
         String getNC = numControl.getText().toString();
         String getPWD = password.getText().toString();
 
@@ -99,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(NetworkResponse response) {
                         // This is status code: response.statusCode
                         // This is string response: NetworkResponseRequest.parseToString(response)
-
-
 
                         try {
                             String info = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
@@ -115,15 +107,13 @@ public class MainActivity extends AppCompatActivity {
                             login_status=true;
 
                             findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-                            iniciarPrincipal();
+                            iniciarTablero();
 
                         }catch (JSONException e) {
-
                             Toast.makeText(MainActivity.this,e.toString(),Toast.LENGTH_LONG).show();
                         }catch (UnsupportedEncodingException u){
 
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -144,8 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 params.put("password",getPWD);
                 return params;
             }
-        }
-                ;
+        };
 
         queue.add(request);
 
@@ -153,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         //Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
-    private void iniciarPrincipal(){
+    private void iniciarTablero(){
 
         Intent intent = new Intent(MainActivity.this, Tablero_Alumno.class);
         intent.putExtra("objeto", jsonObject.toString());
