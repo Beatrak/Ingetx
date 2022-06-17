@@ -148,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("objeto", jsonObject.toString());
         guardarDatos();
         startActivity(intent);
-        //Toast.makeText(MainActivity.this,jsonObject.toString(),Toast.LENGTH_LONG).show();
     }
 
     private void guardarDatos(){
