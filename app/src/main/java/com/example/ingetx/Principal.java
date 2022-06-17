@@ -34,6 +34,8 @@ public class Principal extends AppCompatActivity {
     Button dashboard;
     boolean login;
 
+    String github;
+
 
 
     @Override
