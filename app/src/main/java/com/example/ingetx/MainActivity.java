@@ -14,16 +14,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,20 +50,25 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
 
         queue = Volley.newRequestQueue(this);
         numControl= (EditText) findViewById(R.id.noControl);
         password= (EditText) findViewById(R.id.contra);
         login= (Button) findViewById(R.id.login);
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            readWs();
+
+                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+                readWs();
+
             }
         });
 
@@ -67,13 +76,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy(){
+        super.onDestroy();
+        setContentView(R.layout.activity_main);
 
         finish();
         System.exit(0);
-
     }
+
+
 
     private void readWs(){
         String getNC = numControl.getText().toString();
@@ -81,41 +92,50 @@ public class MainActivity extends AppCompatActivity {
 
         String url = "http://192.168.1.73:8000/login/";
 
-        StringRequest postRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d("Response", response);
-                try {
-                    jsonObject = new JSONObject(response);
-                    usuario= jsonObject.getJSONObject("user");
-                    token = jsonObject.getString("token");
-                    name = usuario.getString("name");
-                    last_name = usuario.getString("last_name");
-                    third_name = usuario.getString("third_name");
-                    username = usuario.getString("username");
-                    message = jsonObject.getString("message");
-
-                    login_status=true;
-                    iniciarPrincipal();
+        NetworkResponseRequest request = new NetworkResponseRequest(Request.Method.POST,
+                url,
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        // This is status code: response.statusCode
+                        // This is string response: NetworkResponseRequest.parseToString(response)
 
 
+
+                        try {
+                            String info = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+                            jsonObject = new JSONObject(info);
+                            usuario= jsonObject.getJSONObject("user");
+                            token = jsonObject.getString("token");
+                            name = usuario.getString("name");
+                            last_name = usuario.getString("last_name");
+                            third_name = usuario.getString("third_name");
+                            username = usuario.getString("username");
+                            message = jsonObject.getString("message");
+                            login_status=true;
+
+                            findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                            iniciarPrincipal();
+
+                        }catch (JSONException e) {
+
+                            Toast.makeText(MainActivity.this,e.toString(),Toast.LENGTH_LONG).show();
+                        }catch (UnsupportedEncodingException u){
+
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
+
+                       // switch (error.getMessage())
+                    }
 
                 }
-                catch (JSONException e) {
-
-                    e.printStackTrace();
-                }
-
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                error.printStackTrace();
-            }
-        })
+        )
         {
             @Override
             protected Map<String, String> getParams() {
@@ -126,24 +146,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
                 ;
-        queue.add(postRequest);
+
+        queue.add(request);
 
 
         //Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
     private void iniciarPrincipal(){
-        if (jsonObject.toString() != null){
-            Intent intent = new Intent(MainActivity.this, Tablero_Alumno.class);
-            intent.putExtra("objeto", jsonObject.toString());
-            guardarDatos();
-            startActivity(intent);
-            //Toast.makeText(MainActivity.this,jsonObject.toString(),Toast.LENGTH_LONG).show();
 
-        }else{
-            iniciarPrincipal();
-        }
-
+        Intent intent = new Intent(MainActivity.this, Tablero_Alumno.class);
+        intent.putExtra("objeto", jsonObject.toString());
+        guardarDatos();
+        startActivity(intent);
+        //Toast.makeText(MainActivity.this,jsonObject.toString(),Toast.LENGTH_LONG).show();
     }
 
     private void guardarDatos(){
@@ -153,6 +169,40 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("jason",jsonObject.toString());
         editor.commit();
 
+    }
+
+    public static class NetworkResponseRequest extends Request<NetworkResponse> {
+        private final Response.Listener<NetworkResponse> mListener;
+
+        public NetworkResponseRequest(int method, String url, Response.Listener<NetworkResponse> listener,
+                                      Response.ErrorListener errorListener) {
+            super(method, url, errorListener);
+            mListener = listener;
+        }
+
+        public NetworkResponseRequest(String url, Response.Listener<NetworkResponse> listener, Response.ErrorListener errorListener) {
+            this(Method.GET, url, listener, errorListener);
+        }
+
+        @Override
+        protected void deliverResponse(NetworkResponse response) {
+            mListener.onResponse(response);
+        }
+
+        @Override
+        protected Response<NetworkResponse> parseNetworkResponse(NetworkResponse response) {
+            return Response.success(response, HttpHeaderParser.parseCacheHeaders(response));
+        }
+
+        public static String parseToString(NetworkResponse response) {
+            String parsed;
+            try {
+                parsed = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+            } catch (UnsupportedEncodingException e) {
+                parsed = new String(response.data);
+            }
+            return parsed;
+        }
     }
 
     }
