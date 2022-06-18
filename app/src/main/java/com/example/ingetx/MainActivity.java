@@ -43,8 +43,6 @@ public class MainActivity extends AppCompatActivity {
     boolean login_status=false;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -65,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
     @Override
@@ -77,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         finish();
         System.exit(0);
     }
-
 
 
     private void connectWS(){
@@ -124,8 +119,7 @@ public class MainActivity extends AppCompatActivity {
                        // switch (error.getMessage())
                     }
 
-                }
-        )
+                })
         {
             @Override
             protected Map<String, String> getParams() {
@@ -137,9 +131,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
         queue.add(request);
-
-
-        //Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
 
     private void iniciarTablero(){

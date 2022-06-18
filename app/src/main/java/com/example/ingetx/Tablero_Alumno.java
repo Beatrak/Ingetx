@@ -1,5 +1,7 @@
 package com.example.ingetx;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.EdgeEffect;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
@@ -16,6 +20,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -45,6 +50,9 @@ public class Tablero_Alumno extends AppCompatActivity {
     String correo= "";
     boolean login;
 
+    TextView bienvenida;
+    Button step1, step2, step3;
+
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityTableroAlumnoBinding binding;
 
@@ -52,8 +60,13 @@ public class Tablero_Alumno extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         binding = ActivityTableroAlumnoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        bienvenida= (TextView) findViewById(R.id.welcomeView);
+
 
         setSupportActionBar(binding.appBarTableroAlumno.toolbar);
         binding.appBarTableroAlumno.fab.setOnClickListener(new View.OnClickListener() {
@@ -80,13 +93,11 @@ public class Tablero_Alumno extends AppCompatActivity {
 
         if(login){
             cargarDatos();
-
+            bienvenida.setText("¡Bienvenido, "+name+"!");
         }else{
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
-
-
            }
 
     @Override
