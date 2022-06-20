@@ -55,8 +55,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/referencia_button"
-        app:layout_constraintVertical_bias="0.494" />
+        app:layout_constraintTop_toBottomOf="@+id/step_3"
+        app:layout_constraintVertical_bias="0.176" />
 
     <TextView
         android:id="@+id/step_1"
@@ -98,6 +98,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/step_1"
         app:layout_constraintVertical_bias="0.01" />
+
+    <TextView
+        android:id="@+id/step_3"
+        android:layout_width="302dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:text="Una vez validado el pago, podrás descargar tu pase de examen"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/referencia_button" />
 
     <ImageView
         android:id="@+id/check1"

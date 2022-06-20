@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Principal"
+            android:name=".FichaAdmision"
             android:exported="true">
             <intent-filter>
                 <action android:name="package.Principal" />

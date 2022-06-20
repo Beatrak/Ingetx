@@ -2,11 +2,9 @@ package com.example.ingetx;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,7 +13,7 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class Principal extends AppCompatActivity {
+public class FichaAdmision extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -58,7 +56,7 @@ public class Principal extends AppCompatActivity {
                 editor.putBoolean("sesion",false);
                 editor.commit();
 
-                Intent cierraSes = new Intent(Principal.this, MainActivity.class);
+                Intent cierraSes = new Intent(FichaAdmision.this, MainActivity.class);
                 startActivity(cierraSes);
             }
         });
@@ -84,7 +82,7 @@ public class Principal extends AppCompatActivity {
     }
 
     public void pantalla (){
-        Intent intent = new Intent(Principal.this,Tablero_Alumno.class);
+        Intent intent = new Intent(FichaAdmision.this,Tablero_Alumno.class);
         startActivity(intent);
     }
 
