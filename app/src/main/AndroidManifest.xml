@@ -31,15 +31,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FichaAdmision"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="package.Principal" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name=".MainActivity"
             android:label="@string/app_name" />
     </application>

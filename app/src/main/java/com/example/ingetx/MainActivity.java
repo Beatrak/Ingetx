@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                findViewById(R.id.login).setEnabled(false);
                 findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
                 connectWS();
 
@@ -114,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.getMessage(),Toast.LENGTH_LONG).show();
-
-                       // switch (error.getMessage())
+                        Toast.makeText(MainActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                        findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
+                        findViewById(R.id.login).setEnabled(true);
                     }
 
                 })
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void iniciarTablero(){
-
+        findViewById(R.id.login).setEnabled(true);
         Intent intent = new Intent(MainActivity.this, Tablero_Alumno.class);
         intent.putExtra("objeto", jsonObject.toString());
         guardarDatos();
