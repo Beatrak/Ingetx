@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
         android:id="@+id/ITSX"
         android:layout_width="294dp"
@@ -18,19 +19,18 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291" />
-
+        app:layout_constraintVertical_bias="0.315" />
 
     <TextView
         android:id="@+id/IniciarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="296dp"
         android:text="Iniciar sesión"
         android:textColor="#3F51B5"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +65,7 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/white"
         android:text="Iniciar Sesión"
         android:textColor="#FFFFFF"
@@ -78,12 +78,12 @@
         android:id="@+id/imageView2"
         android:layout_width="155dp"
         android:layout_height="156dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/itsx" />
+        app:srcCompat="@drawable/tecnm" />
 
     <RelativeLayout
         android:id="@+id/loadingPanel"

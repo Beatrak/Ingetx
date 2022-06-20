@@ -15,4 +15,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/itsx</item>
+        <item name="postSplashScreenTheme">@style/Theme.Ingetx</item>
+    </style>
+
 </resources>

@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,6 +29,7 @@ public class FichaAdmision extends AppCompatActivity {
     String username= "";
     String  message= "";
     String correo= "";
+    ArrayAdapter<String> arrayAdapter;
 
     String seleccion="";
 
@@ -32,21 +37,45 @@ public class FichaAdmision extends AppCompatActivity {
 
     ArrayList<String> oferta = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ficha_admision);
 
-        preferences = getSharedPreferences("preferencias",0);
-        cargarDatos();
         oferta.add("Ingeniería en Sistemas Computacionales");
         oferta.add("Ingeniería Industrial");
         oferta.add("Ingeniería Bioquímica");
         oferta.add("Ingeniería Electromecanica");
+        oferta.add("Ingeniería Electrónica");
+        oferta.add("Ingeniería en Industrias Alimentarias");
+        oferta.add("Licenciatura en Gastronomía");
+        oferta.add("Ingeniería Civil");
+        oferta.add("Ingeniería Mecatronica");
+        oferta.add("Ingeniería Industrial");
+        oferta.add("Ingeniería en Gestion Empresarial");
+
+        preferences = getSharedPreferences("preferencias",0);
+        cargarDatos();
+
+        arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, oferta);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         carreras = findViewById(R.id.carreras_spinner);
 
-        //carreras.se
+        carreras.setAdapter(arrayAdapter);
+
+        carreras.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                seleccion = parent.getItemAtPosition(position).toString();
+                Toast.makeText(FichaAdmision.this,seleccion,Toast.LENGTH_SHORT).show();
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView <?> parent) {
+            }
+        });
     }
 
     public void cargarDatos(){
