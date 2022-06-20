@@ -62,13 +62,10 @@ public class Tablero_Alumno extends AppCompatActivity {
         setTheme(R.style.Theme_Ingetx);
         super.onCreate(savedInstanceState);
 
-
-
         binding = ActivityTableroAlumnoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         bienvenida= (TextView) findViewById(R.id.welcomeView);
-
 
         setSupportActionBar(binding.appBarTableroAlumno.toolbar);
         binding.appBarTableroAlumno.fab.setOnClickListener(new View.OnClickListener() {

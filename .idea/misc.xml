@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2015" />
+        <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/drawable/ic_itsx_background.xml" value="0.1965" />
         <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2015" />
         <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/drawable/ic_menu_camera.xml" value="0.2015" />
         <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/drawable/ic_menu_gallery.xml" value="0.2015" />
@@ -28,6 +29,7 @@
         <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/menu/activity_main_drawer.xml" value="0.5" />
         <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/menu/principal.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/menu/tablero__alumno.xml" value="0.25" />
+        <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/mipmap-anydpi-v26/ic_itsx.xml" value="0.1965" />
         <entry key="..\:/Users/tibu_/AndroidStudioProjects/Ingetx/app/src/main/res/xml/preferences.xml" value="0.1" />
       </map>
     </option>
