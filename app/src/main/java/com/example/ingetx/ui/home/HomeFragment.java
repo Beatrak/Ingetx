@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.ingetx.FichaAdmision;
 import com.example.ingetx.Referencia;
 import com.example.ingetx.Tablero_Alumno;
 import com.example.ingetx.databinding.FragmentHomeBinding;
@@ -37,6 +38,15 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent ref = new Intent(HomeFragment.this.binding.textHome.getContext(), Referencia.class);
                 startActivity(ref);
+            }
+        });
+
+        Button ficha = binding.fichaButton;
+        ficha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent fic = new Intent(HomeFragment.this.binding.textHome.getContext(), FichaAdmision.class);
+                startActivity(fic);
             }
         });
 

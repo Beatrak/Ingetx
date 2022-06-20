@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".FichaAdmision"
+            android:exported="false" />
+        <activity
             android:name=".Referencia"
             android:exported="false" />
         <activity
