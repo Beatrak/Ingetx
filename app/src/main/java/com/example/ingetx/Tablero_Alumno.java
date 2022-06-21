@@ -1,8 +1,5 @@
 package com.example.ingetx;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.ClipData;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,26 +7,18 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
-import android.widget.EdgeEffect;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.ingetx.databinding.ActivityTableroAlumnoBinding;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -94,7 +83,7 @@ public class Tablero_Alumno extends AppCompatActivity {
             cargarDatos();
             bienvenida.setText("¡Bienvenido, "+name+"!");
         }else{
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
            }
@@ -145,7 +134,7 @@ public class Tablero_Alumno extends AppCompatActivity {
         editor.putBoolean("sesion",false);
         editor.commit();
 
-        Intent cierraSes = new Intent(Tablero_Alumno.this, MainActivity.class);
+        Intent cierraSes = new Intent(Tablero_Alumno.this, LoginActivity.class);
         startActivity(cierraSes);
         return true;
     }

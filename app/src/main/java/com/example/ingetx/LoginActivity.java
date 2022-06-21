@@ -25,7 +25,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
@@ -58,9 +58,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                findViewById(R.id.login).setEnabled(false);
-                findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
-                connectWS();
+                if(numControl.getText().toString().isEmpty()){
+                    Toast.makeText(LoginActivity.this,"Ingresa tu número de control",Toast.LENGTH_SHORT).show();
+                }else if (password.getText().toString().isEmpty()){
+                    Toast.makeText(LoginActivity.this,"Ingresa tu contraseña",Toast.LENGTH_SHORT).show();
+                }else {
+                    findViewById(R.id.login).setEnabled(false);
+                    findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+                    connectWS();
+                }
 
             }
         });
@@ -106,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                             iniciarTablero();
 
                         }catch (JSONException e) {
-                            Toast.makeText(MainActivity.this,e.toString(),Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this,e.toString(),Toast.LENGTH_LONG).show();
                         }catch (UnsupportedEncodingException u){
 
                         }
@@ -115,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(MainActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this,error.toString(),Toast.LENGTH_SHORT).show();
                         findViewById(R.id.loadingPanel).setVisibility(View.INVISIBLE);
                         findViewById(R.id.login).setEnabled(true);
                     }
@@ -136,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void iniciarTablero(){
         findViewById(R.id.login).setEnabled(true);
-        Intent intent = new Intent(MainActivity.this, Tablero_Alumno.class);
+        Intent intent = new Intent(LoginActivity.this, Tablero_Alumno.class);
         intent.putExtra("objeto", jsonObject.toString());
         guardarDatos();
         startActivity(intent);
@@ -148,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putBoolean("sesion",login_status);
         editor.putString("jason",jsonObject.toString());
         editor.commit();
-
     }
 
     public static class NetworkResponseRequest extends Request<NetworkResponse> {
