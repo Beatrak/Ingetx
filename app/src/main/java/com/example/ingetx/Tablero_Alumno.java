@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.example.ingetx.databinding.ActivityTableroAlumnoBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
