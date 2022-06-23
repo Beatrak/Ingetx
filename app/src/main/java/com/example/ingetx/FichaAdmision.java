@@ -65,7 +65,7 @@ public class FichaAdmision extends AppCompatActivity {
     int pageHeight = 1120;
     int pagewidth = 792;
 
-    Bitmap bmp, scaledbmp;
+    Bitmap bmp, scaledbmp,profilePic,scaledPfp;
     private static final int PERMISSION_REQUEST_CODE = 200;
     String dir = Environment.getExternalStorageDirectory().getAbsolutePath();
 
@@ -80,7 +80,9 @@ public class FichaAdmision extends AppCompatActivity {
         // initializing our variables.
         generar = (Button) findViewById(R.id.ficha_generate);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.itsx);
-        scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false);
+        profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.ic_usuario );
+        scaledbmp = Bitmap.createScaledBitmap(bmp, 120, 140, false);
+        scaledPfp = Bitmap.createScaledBitmap(profilePic,100 , 160, false);
 
         if (checkPermission()) {
             //Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
@@ -220,19 +222,28 @@ public class FichaAdmision extends AppCompatActivity {
         // the first parameter is our text, second parameter
         // is position from start, third parameter is position from top
         // and then we are passing our variable of paint which is title.
-        canvas.drawText("Instituto Tecnológico Superior de Xalapa", 209, 100, title);
-        canvas.drawText("Solicitud de ficha para nuevo ingreso", 209, 80, title);
+        canvas.drawText(username, 209, 60, title);
+        canvas.drawText("Instituto Tecnológico Superior de Xalapa", 209, 80, title);
+        canvas.drawText("Solicitud de ficha para nuevo ingreso", 209, 100, title);
 
         // similarly we are creating another text and in this
         // we are aligning this text to center of our PDF file.
         title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
-        title.setColor(ContextCompat.getColor(this, R.color.purple_200));
+        title.setColor(ContextCompat.getColor(this, R.color.black));
         title.setTextSize(15);
 
         // below line is used for setting
         // our text to center of PDF.
         title.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText(name+" "+last_name+" "+third_name, 396, 560, title);
+        canvas.drawBitmap(scaledPfp, 396, 30
+                567++7625paint);
+        canvas.drawText("Nombre completo: "+last_name+" "+third_name+" "+name, 396, 560, title);
+        canvas.drawText("Número de control: "+username, 396, 580, title);
+        canvas.drawText("Correo Electrónico: "+correo, 396, 600, title);
+        canvas.drawText("Carrera: "+selec_carrera, 396, 620, title);
+        canvas.drawText("Modalidad: "+selec_mod, 396, 640, title);
+
+
 
         // after adding all attributes to our
         // PDF file we will be finishing our page.
@@ -241,6 +252,7 @@ public class FichaAdmision extends AppCompatActivity {
         // below line is used to set the name of
         // our PDF file and its path.
         File file = new File(Environment.getExternalStorageDirectory(), username+"_ficha.pdf");
+
 
         try {
             // after creating a file name we will
