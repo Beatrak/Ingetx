@@ -65,7 +65,8 @@ public class FichaAdmision extends AppCompatActivity {
     int pageHeight = 1120;
     int pagewidth = 792;
 
-    Bitmap bmp, scaledbmp,profilePic,scaledPfp;
+    Bitmap bmp, scaledbmp,scaledPfp;
+    Bitmap profilePic = null;
     private static final int PERMISSION_REQUEST_CODE = 200;
     String dir = Environment.getExternalStorageDirectory().getAbsolutePath();
 
@@ -80,9 +81,10 @@ public class FichaAdmision extends AppCompatActivity {
         // initializing our variables.
         generar = (Button) findViewById(R.id.ficha_generate);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.itsx);
-        profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.ic_usuario );
+        profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.perfil );
+
         scaledbmp = Bitmap.createScaledBitmap(bmp, 120, 140, false);
-        scaledPfp = Bitmap.createScaledBitmap(profilePic,100 , 160, false);
+        scaledPfp = Bitmap.createScaledBitmap(profilePic,160 , 220, false);
 
         if (checkPermission()) {
             //Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
@@ -235,8 +237,7 @@ public class FichaAdmision extends AppCompatActivity {
         // below line is used for setting
         // our text to center of PDF.
         title.setTextAlign(Paint.Align.CENTER);
-        canvas.drawBitmap(scaledPfp, 396, 30
-                567++7625paint);
+        canvas.drawBitmap(scaledPfp, 396, 300, paint);
         canvas.drawText("Nombre completo: "+last_name+" "+third_name+" "+name, 396, 560, title);
         canvas.drawText("Número de control: "+username, 396, 580, title);
         canvas.drawText("Correo Electrónico: "+correo, 396, 600, title);
