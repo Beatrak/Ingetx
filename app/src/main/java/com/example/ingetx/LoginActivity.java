@@ -87,6 +87,7 @@ public class LoginActivity extends AppCompatActivity {
         String getPWD = password.getText().toString();
 
         String url = "http://192.168.1.74:8000/login/";
+        //get
 
         NetworkResponseRequest request = new NetworkResponseRequest(Request.Method.POST,
                 url,
