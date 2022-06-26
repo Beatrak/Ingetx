@@ -24,8 +24,9 @@ public class SlideshowFragment extends Fragment {
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.inicio;
+        textView.setText("Agrega los siguientes documentos a tu expediente digital");
+
         return root;
     }
 

@@ -237,14 +237,12 @@ public class FichaAdmision extends AppCompatActivity {
         // below line is used for setting
         // our text to center of PDF.
         title.setTextAlign(Paint.Align.CENTER);
-        canvas.drawBitmap(scaledPfp, 396, 300, paint);
+        canvas.drawBitmap(scaledPfp, 296, 300, paint);
         canvas.drawText("Nombre completo: "+last_name+" "+third_name+" "+name, 396, 560, title);
         canvas.drawText("Número de control: "+username, 396, 580, title);
         canvas.drawText("Correo Electrónico: "+correo, 396, 600, title);
         canvas.drawText("Carrera: "+selec_carrera, 396, 620, title);
         canvas.drawText("Modalidad: "+selec_mod, 396, 640, title);
-
-
 
         // after adding all attributes to our
         // PDF file we will be finishing our page.
