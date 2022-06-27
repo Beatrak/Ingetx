@@ -3,6 +3,7 @@ package com.example.ingetx;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -63,11 +64,8 @@ public class VerPdf extends AppCompatActivity {
         }
 
 
-        File file = new File(preferences.getString("ruta",""));
-        Uri u = Uri.parse(preferences.getString("ruta",""));
-        Toast.makeText(VerPdf.this,file.getPath(),Toast.LENGTH_LONG).show();
-
-
+        String archivo = getIntent().getStringExtra("leer");
+        Uri u = Uri.parse(archivo);
 
         doc= findViewById(R.id.pdfVer);
         doc.fromUri(u).load();

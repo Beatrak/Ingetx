@@ -77,6 +77,7 @@ public class SlideshowFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent ver = new Intent(getActivity(), VerPdf.class);
+                ver.putExtra("leer",archivo);
                 startActivity(ver);
             }
         });
