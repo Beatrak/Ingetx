@@ -76,9 +76,26 @@ public class SlideshowFragment extends Fragment {
         ver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent ver = new Intent(getActivity(), VerPdf.class);
-                ver.putExtra("leer",archivo);
-                startActivity(ver);
+                if (archivo.isEmpty()){
+                    Toast.makeText(getActivity(),"No hay ningún archivo cargado",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent ver = new Intent(getActivity(), VerPdf.class);
+                    ver.putExtra("leer",archivo);
+                    startActivity(ver);
+                }
+
+            }
+        });
+
+        eliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (archivo.isEmpty()){
+                    Toast.makeText(getActivity(),"No hay ningún archivo cargado",Toast.LENGTH_SHORT).show();
+                }else{
+                archivo="";
+                Toast.makeText(getActivity(),"Archivo Eliminado Correctamente",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
