@@ -83,7 +83,6 @@ public class SlideshowFragment extends Fragment {
                     ver.putExtra("leer",archivo);
                     startActivity(ver);
                 }
-
             }
         });
 
