@@ -36,7 +36,6 @@ public class GalleryFragment extends Fragment {
     TextView noControl;
     TextView correo;
 
-
     private FragmentGalleryBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
