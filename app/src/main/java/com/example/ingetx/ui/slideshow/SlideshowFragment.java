@@ -20,7 +20,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.ingetx.Tablero_Alumno;
+import com.example.ingetx.VerPdf;
 import com.example.ingetx.databinding.FragmentSlideshowBinding;
+import com.github.barteksc.pdfviewer.PDFView;
+
+import java.io.File;
 
 public class SlideshowFragment extends Fragment {
     SharedPreferences preferences;
@@ -28,6 +32,8 @@ public class SlideshowFragment extends Fragment {
 
     ActivityResultLauncher<String> dGetContent;
     String archivo="";
+    PDFView visualizador;
+    File decod;
 
 
     private FragmentSlideshowBinding binding;
@@ -40,7 +46,7 @@ public class SlideshowFragment extends Fragment {
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        preferences = getActivity().getSharedPreferences("archivo",0);
+        preferences = getActivity().getSharedPreferences("subida",0);
         editor = preferences.edit();
 
         final TextView textView = binding.inicio;
@@ -49,8 +55,10 @@ public class SlideshowFragment extends Fragment {
         dGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
             public void onActivityResult(Uri result) {
-                archivo= result.getPath();
+                archivo= result.toString();
                 Toast.makeText(getActivity(),archivo,Toast.LENGTH_LONG).show();
+                editor.putString("ruta",archivo);
+                editor.commit();
             }
         });
 
@@ -64,6 +72,14 @@ public class SlideshowFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 dGetContent.launch("application/pdf");
+            }
+        });
+
+        ver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ver = new Intent(getActivity(), VerPdf.class);
+                startActivity(ver);
             }
         });
 
