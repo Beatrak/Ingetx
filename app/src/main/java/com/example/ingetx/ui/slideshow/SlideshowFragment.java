@@ -32,8 +32,6 @@ public class SlideshowFragment extends Fragment {
 
     ActivityResultLauncher<String> dGetContent;
     String archivo="";
-    PDFView visualizador;
-    File decod;
 
 
     private FragmentSlideshowBinding binding;

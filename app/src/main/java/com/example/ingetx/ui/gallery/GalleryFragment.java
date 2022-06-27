@@ -18,7 +18,6 @@ import org.json.JSONObject;
 
 public class GalleryFragment extends Fragment {
     SharedPreferences preferences;
-    SharedPreferences.Editor editor;
 
     JSONObject alumno= null;
     JSONObject usuario = null;
@@ -44,6 +43,8 @@ public class GalleryFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         GalleryViewModel galleryViewModel =
                 new ViewModelProvider(this).get(GalleryViewModel.class);
+
+
         preferences = requireActivity().getSharedPreferences("preferencias",0);
         cargarDatos();
 
@@ -87,8 +88,6 @@ public class GalleryFragment extends Fragment {
             username = usuario.getString("username");
             message = alumno.getString("message");
             mail = usuario.getString("email");
-
-
 
         } catch (JSONException e) {
             e.printStackTrace();
