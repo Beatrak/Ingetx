@@ -79,7 +79,7 @@ public class FichaAdmision extends AppCompatActivity {
         setContentView(R.layout.activity_ficha_admision);
 
         // initializing our variables.
-        generar = (Button) findViewById(R.id.ficha_generate);
+        generar = findViewById(R.id.ficha_generate);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.itsx);
         profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.perfil );
 
@@ -97,6 +97,7 @@ public class FichaAdmision extends AppCompatActivity {
                 // calling method to
                 // generate our PDF file.
                 generatePDF();
+
             }
         });
         oferta.add("Ingeniería en Sistemas Computacionales");
@@ -133,8 +134,6 @@ public class FichaAdmision extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selec_carrera = parent.getItemAtPosition(position).toString();
-                //Toast.makeText(FichaAdmision.this, selec_carrera, Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -146,8 +145,6 @@ public class FichaAdmision extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 selec_mod = parent.getItemAtPosition(position).toString();
-                //Toast.makeText(FichaAdmision.this, selec_mod, Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
@@ -271,7 +268,6 @@ public class FichaAdmision extends AppCompatActivity {
         // location we are closing our PDF file.
         pdfDocument.close();
     }
-
 
     private boolean checkPermission() {
         // checking of permissions.
