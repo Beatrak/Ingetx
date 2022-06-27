@@ -54,7 +54,6 @@ public class SlideshowFragment extends Fragment {
             @Override
             public void onActivityResult(Uri result) {
                 archivo= result.toString();
-                Toast.makeText(getActivity(),archivo,Toast.LENGTH_LONG).show();
                 editor.putString("ruta",archivo);
                 editor.commit();
             }
