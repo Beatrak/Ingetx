@@ -27,7 +27,6 @@ import org.json.JSONObject;
 public class Tablero_Alumno extends AppCompatActivity {
 
     SharedPreferences preferences;
-    SharedPreferences.Editor editor;
 
     JSONObject alumno= null;
     JSONObject usuario = null;
