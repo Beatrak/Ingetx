@@ -81,20 +81,6 @@ public class FichaAdmision extends AppCompatActivity {
         scaledbmp = Bitmap.createScaledBitmap(bmp, 120, 140, false);
         scaledPfp = Bitmap.createScaledBitmap(profilePic,160 , 220, false);
 
-        if (checkPermission()) {
-            //Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
-        } else {
-            requestPermission();
-        }
-        generar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // calling method to
-                // generate our PDF file.
-                generatePDF();
-
-            }
-        });
         oferta.add("Ingeniería en Sistemas Computacionales");
         oferta.add("Ingeniería Industrial");
         oferta.add("Ingeniería Bioquímica");
@@ -109,6 +95,23 @@ public class FichaAdmision extends AppCompatActivity {
 
         modalidad.add("Escolarizado");
         modalidad.add("Sabatino");
+
+
+        if (checkPermission()) {
+            //Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
+        } else {
+            requestPermission();
+        }
+        generar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calling method to
+                // generate our PDF file.
+                generatePDF();
+            }
+        });
+
+
 
         preferences = getSharedPreferences("preferencias", 0);
         cargarDatos();
