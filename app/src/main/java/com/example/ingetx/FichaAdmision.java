@@ -35,7 +35,6 @@ import android.graphics.BitmapFactory;
 import android.widget.Button;
 
 public class FichaAdmision extends AppCompatActivity {
-
     SharedPreferences preferences;
 
     JSONObject alumno = null;
@@ -64,13 +63,10 @@ public class FichaAdmision extends AppCompatActivity {
     // for our PDF file.
     int pageHeight = 1120;
     int pagewidth = 792;
-
     Bitmap bmp, scaledbmp,scaledPfp;
     Bitmap profilePic = null;
     private static final int PERMISSION_REQUEST_CODE = 200;
-
     Button generar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +76,7 @@ public class FichaAdmision extends AppCompatActivity {
         // initializing our variables.
         generar = findViewById(R.id.ficha_generate);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.itsx);
-        profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.perfil );
+        profilePic = BitmapFactory.decodeResource(getResources(),R.drawable.perfil);
 
         scaledbmp = Bitmap.createScaledBitmap(bmp, 120, 140, false);
         scaledPfp = Bitmap.createScaledBitmap(profilePic,160 , 220, false);
