@@ -111,8 +111,6 @@ public class FichaAdmision extends AppCompatActivity {
             }
         });
 
-
-
         preferences = getSharedPreferences("preferencias", 0);
         cargarDatos();
 
