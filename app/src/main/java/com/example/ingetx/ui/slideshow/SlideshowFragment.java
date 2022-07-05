@@ -29,7 +29,6 @@ import java.io.File;
 public class SlideshowFragment extends Fragment {
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-
     ActivityResultLauncher<String> dGetContent;
     String archivo="";
 
