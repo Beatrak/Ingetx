@@ -68,7 +68,6 @@ public class FichaAdmision extends AppCompatActivity {
     Bitmap bmp, scaledbmp,scaledPfp;
     Bitmap profilePic = null;
     private static final int PERMISSION_REQUEST_CODE = 200;
-    String dir = Environment.getExternalStorageDirectory().getAbsolutePath();
 
     Button generar;
 
