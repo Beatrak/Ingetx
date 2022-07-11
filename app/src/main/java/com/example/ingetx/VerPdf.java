@@ -33,7 +33,6 @@ public class VerPdf extends AppCompatActivity {
 
         String archivo = getIntent().getStringExtra("leer");
         Uri u = Uri.parse(archivo);
-
         doc= findViewById(R.id.pdfVer);
         doc.fromUri(u).load();
         init();
