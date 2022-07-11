@@ -62,6 +62,7 @@ public class SlideshowFragment extends Fragment {
                     archivo= result.toString();
                     editor.putString("ruta",archivo);
                     editor.commit();
+                    //Toast.makeText(getActivity(),archivo,Toast.LENGTH_LONG).show();
                 }
             }
         });
