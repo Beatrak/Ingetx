@@ -53,8 +53,11 @@ public class SlideshowFragment extends Fragment {
             @Override
             public void onActivityResult(Uri result) {
                 if(result == null){
-                    Intent i = new Intent(getActivity(),Tablero_Alumno.class);
-                    startActivity(i);
+                    try {
+                        this.finalize();
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                    }
                 }else{
                     archivo= result.toString();
                     editor.putString("ruta",archivo);
