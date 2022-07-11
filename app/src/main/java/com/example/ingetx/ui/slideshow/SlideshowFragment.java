@@ -52,9 +52,14 @@ public class SlideshowFragment extends Fragment {
         dGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
             @Override
             public void onActivityResult(Uri result) {
-                archivo= result.toString();
-                editor.putString("ruta",archivo);
-                editor.commit();
+                if(result == null){
+                    Intent i = new Intent(getActivity(),Tablero_Alumno.class);
+                    startActivity(i);
+                }else{
+                    archivo= result.toString();
+                    editor.putString("ruta",archivo);
+                    editor.commit();
+                }
             }
         });
 
